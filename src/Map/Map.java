@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public abstract class Map {
   
   int sizex; // IN ARRAY TERMS (-1 compared to regular size)

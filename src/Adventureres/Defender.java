@@ -1,26 +1,11 @@
 public class Defender extends Adventurer{
   int caffeine, caffeineMax;
-  String preferredLanguage;
 
   /*the other constructors ultimately call the constructor
     with all parameters.*/
-  public Defender(String name, int hp, String language){
-    super(name,hp,100);
-    caffeineMax = 12;
-    caffeine = caffeineMax/2;
-    preferredLanguage = language;
-  }
-
   public Defender(String name, int hp){
-    this(name,hp);  
-  }
-
-  public Defender(String name){
-    this(name,12);
-  }
-
-  public Defender(){
-    this("Carmack");
+    super(name,hp,100);
+    
   }
 
   /*The next 8 methods are all required because they are abstract:*/
