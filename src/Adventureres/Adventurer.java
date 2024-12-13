@@ -7,7 +7,7 @@ public abstract class Adventurer{
   private int HP,maxHP;
 
 
-  /*There is no no-arg constructor. Be careful with your subclass constructors.*/
+  /*There is no no-arg constructor. Be careful with yours subclass constructors.*/
   
   public Adventurer(String name){
       this(name, 10);
