@@ -1,25 +1,25 @@
-public class MyWarrior extends Adventurer{
+public class Defender extends Adventurer{
   int caffeine, caffeineMax;
   String preferredLanguage;
 
   /*the other constructors ultimately call the constructor
     with all parameters.*/
-  public MyWarrior(String name, int hp, String language){
-    super(name,hp);
+  public Defender(String name, int hp, String language){
+    super(name,hp,100);
     caffeineMax = 12;
     caffeine = caffeineMax/2;
     preferredLanguage = language;
   }
 
-  public MyWarrior(String name, int hp){
-    this(name,hp,"c++");  
+  public Defender(String name, int hp){
+    this(name,hp);  
   }
 
-  public MyWarrior(String name){
+  public Defender(String name){
     this(name,12);
   }
 
-  public MyWarrior(){
+  public Defender(){
     this("Carmack");
   }
 

@@ -1,22 +1,16 @@
 // Collaborators:
 
-import java.util.Random;
 
 public abstract class Adventurer{
   private String name;
-  private int HP,maxHP;
+  private int HP,maxHP,money;
 
 
-  /*There is no no-arg constructor. Be careful with yours subclass constructors.*/
-  
-  public Adventurer(String name){
-      this(name, 10);
-  }
-
-  public Adventurer(String name, int hp){
+  public Adventurer(String name, int hp, int money){
       this.name = name;
       this.HP = hp;
       this.maxHP = hp;
+      this.money = money;
   }
 
   //concrete method written using abstract methods.
@@ -84,16 +78,23 @@ public abstract class Adventurer{
   public int getmaxHP(){
       return maxHP;
   }
+  public int getMoney(){
+    return money;
+  }
+  
+  
+  //Set Methods
+  public void setHP(int health){
+    this.HP = health;
+  }
   public void setmaxHP(int newMax){
         maxHP = newMax;
   }
 
-  //Set Methods
-  public void setHP(int health){
-      this.HP = health;
-  }
-
   public void setName(String s){
       this.name = s;
+  }
+  public void setMoney(int money){
+    this.money = money;
   }
 }
