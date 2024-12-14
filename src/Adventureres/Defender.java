@@ -5,7 +5,7 @@ public class Defender extends Adventurer{
     with all parameters.*/
   public Defender(String name, int hp){
     super(name,hp,100);
-    
+
   }
 
   /*The next 8 methods are all required because they are abstract:*/
@@ -41,10 +41,12 @@ public class Defender extends Adventurer{
       setSpecial(getSpecial()-8);
       int damage = (int)(Math.random()*5+Math.random()*5)+3;
       other.applyDamage(damage);
-      return this + " used their "+preferredLanguage+
+      return this + " used their "+"preferredLanguage"+
       " skills to hack the matrix. "+
       " This glitched out "+other+" dealing "+ damage +" points of damage.";
-    }else{
+    }
+    else
+    {
       return "Not enough caffeine to use the ultimate code. Instead "+attack(other);
     }
   }
