@@ -5,6 +5,8 @@ public abstract class Map {
   int sizex; // IN ARRAY TERMS (-1 compared to regular size)
   int sizey;
 
+  boolean visibleBrackets = true;
+
   String[][] map;
 
   public Map(int sizex, int sizey) {
@@ -16,6 +18,10 @@ public abstract class Map {
         map[i][j] = " ";
       }
     }
+  }
+
+  public void setBrackets(boolean boo) {
+    visibleBrackets = boo;
   }
 
   public void spawnEntity(int x, int y, int facing, String entity) {
@@ -39,6 +45,7 @@ public abstract class Map {
     if (facing == 4) {
       map[y][x] = entity;
     }
+    displayMap();
   }
 
   public void moveEntity(int facing, int amountMoved, int x, int y) {
@@ -55,7 +62,7 @@ public abstract class Map {
       }
     }
     if (facing == 3) {
-      if (y + amountMoved <= sizey) {
+      if (y + amountMoved <= sizey) {   // FIX THE BOUNDERIES
         map[y + amountMoved][x] = map[y][x];
         map[y][x] = " ";
       }
@@ -66,24 +73,49 @@ public abstract class Map {
         map[y][x] = " ";
       }
     }
+    displayMap();
   }
+
 
   public void displayMap() {
     clear();
+    System.out.print(" ");
+    for (int i = 0; i < sizex + 1; i++) {
+      System.out.print("___");
+    }
+    System.out.println();
     for (int i = 0; i < map.length; i++) {
-      System.out.println(Arrays.toString(map[i]));
+      System.out.print("|");
+      for (int j = 0; j < map[i].length; j++) {
+        if (visibleBrackets == true) {
+          System.out.print("[" + map[i][j] + "]");
+        }
+        else {
+          if (map[i][j] == " ") {
+            System.out.print("   ");
+          }
+          else {
+            System.out.print(" " + map[i][j]+ " ");
+          }
+        }
+      }
+      System.out.println("|");
+    }
+    System.out.print(" ");
+    for (int i = 0; i < sizex + 1; i++) {
+      System.out.print("___");
     }
   }
 
   public static void clear() {
-      try {
-          if (System.getProperty("os.name").contains("Windows")) {
-              new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-          } else {
-              new ProcessBuilder("clear").inheritIO().start().waitFor();
-          }
-      } catch (Exception e) {
-          e.printStackTrace();
-      }
-  }
+    try {
+        if (System.getProperty("os.name").contains("Windows")) {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        } else {
+            new ProcessBuilder("clear").inheritIO().start().waitFor();
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
+    }
+}
 }
