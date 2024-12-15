@@ -13,17 +13,16 @@ public class MainMenu {
     }
 
     public int getOption() {
-        return(option);
+        return (option);
     }
 
     public boolean getvisibleBrackets() {
-        return(visibleBrackets);
+        return (visibleBrackets);
     }
 
     public boolean getinputDetection() {
-        return(inputDetection);
+        return (inputDetection);
     }
-
 
     public void step(int amount) {
         if ((option + amount <= 3) && (option + amount >= 1) && (isInOptions == false)) {
@@ -33,13 +32,14 @@ public class MainMenu {
             option += amount;
         }
     }
-
+ 
     public void displayMenu() {
         if (isInOptions == false) {
             clear();
             System.out.println("\u001B[37m" + "\u001B[40m");
             System.out.println("\u001B[32m" + " -------------------------------" + "\u001B[37m");
-            System.out.println("\u001B[32m" + "|" + "\u001B[96m" + "         Console Craft         " + "\u001B[32m" + "|" + "\u001B[37m");
+            System.out.println("\u001B[32m" + "|" + "\u001B[96m" + "         Console Craft         " + "\u001B[32m"
+                    + "|" + "\u001B[37m");
             System.out.println("\u001B[32m" + " -------------------------------" + "\u001B[37m");
 
             if (option == 1) {
@@ -57,36 +57,48 @@ public class MainMenu {
                 System.out.println("\u001B[34m" + "          Multi-player          " + "\u001B[37m");
                 System.out.println("\u001B[33m" + "            Options             " + "\u001B[37m");
             }
-        }
-        else {
+        } else {
             clear();
             System.out.println("\u001B[37m" + "\u001B[40m");
             System.out.println("\u001B[32m" + " -------------------------" + "\u001B[37m");
-            System.out.println("\u001B[32m" + "|" + "\u001B[96m" + "         Options         " + "\u001B[32m" + "|" + "\u001B[37m");
+            System.out.println("\u001B[32m" + "|" + "\u001B[96m" + "         Options         " + "\u001B[32m" + "|"
+                    + "\u001B[37m");
             System.out.println("\u001B[32m" + " -------------------------" + "\u001B[37m");
 
             if (option == 1) {
-                System.out.println("\u001B[33m" + "Visible Brackets: [" + getColor(visibleBrackets) + visibleBrackets + "\u001B[33m" + "]" + "\u001B[37m");
-                System.out.println("\u001B[34m" + "Input Detection: [" + getColor(inputDetection) + inputDetection + "\u001B[34m" + "]" + "\u001B[37m");
-                System.out.println("\u001B[34m" + "Hard Mode: [" + getColor(hardDifficulty) + hardDifficulty + "\u001B[34m" + "]" + "\u001B[37m");
+                System.out.println("\u001B[33m" + "Visible Brackets: [" + getColor(visibleBrackets) + visibleBrackets
+                        + "\u001B[33m" + "]" + "\u001B[37m");
+                System.out.println("\u001B[34m" + "Input Detection: [" + getColor(inputDetection) + inputDetection
+                        + "\u001B[34m" + "]" + "\u001B[37m");
+                System.out.println("\u001B[34m" + "Hard Mode: [" + getColor(hardDifficulty) + hardDifficulty
+                        + "\u001B[34m" + "]" + "\u001B[37m");
                 System.out.println("\u001B[34m" + "Back" + "\u001B[37m");
             }
             if (option == 2) {
-                System.out.println("\u001B[34m" + "Visible Brackets: [" + getColor(visibleBrackets) + visibleBrackets + "\u001B[34m" + "]" + "\u001B[37m");
-                System.out.println("\u001B[33m" + "Input Detection: [" + getColor(inputDetection) + inputDetection + "\u001B[33m" + "]" + "\u001B[37m");
-                System.out.println("\u001B[34m" + "Hard Mode: [" + getColor(hardDifficulty) + hardDifficulty + "\u001B[34m" + "]" + "\u001B[37m");
+                System.out.println("\u001B[34m" + "Visible Brackets: [" + getColor(visibleBrackets) + visibleBrackets
+                        + "\u001B[34m" + "]" + "\u001B[37m");
+                System.out.println("\u001B[33m" + "Input Detection: [" + getColor(inputDetection) + inputDetection
+                        + "\u001B[33m" + "]" + "\u001B[37m");
+                System.out.println("\u001B[34m" + "Hard Mode: [" + getColor(hardDifficulty) + hardDifficulty
+                        + "\u001B[34m" + "]" + "\u001B[37m");
                 System.out.println("\u001B[34m" + "Back" + "\u001B[37m");
             }
             if (option == 3) {
-                System.out.println("\u001B[34m" + "Visible Brackets: [" + getColor(visibleBrackets) + visibleBrackets + "\u001B[34m" + "]" + "\u001B[37m");
-                System.out.println("\u001B[34m" + "Input Detection: [" + getColor(inputDetection) + inputDetection + "\u001B[34m" + "]" + "\u001B[37m");
-                System.out.println("\u001B[33m" + "Hard Mode: [" + getColor(hardDifficulty) + hardDifficulty + "\u001B[33m" + "]" + "\u001B[37m");
+                System.out.println("\u001B[34m" + "Visible Brackets: [" + getColor(visibleBrackets) + visibleBrackets
+                        + "\u001B[34m" + "]" + "\u001B[37m");
+                System.out.println("\u001B[34m" + "Input Detection: [" + getColor(inputDetection) + inputDetection
+                        + "\u001B[34m" + "]" + "\u001B[37m");
+                System.out.println("\u001B[33m" + "Hard Mode: [" + getColor(hardDifficulty) + hardDifficulty
+                        + "\u001B[33m" + "]" + "\u001B[37m");
                 System.out.println("\u001B[34m" + "Back" + "\u001B[37m");
             }
             if (option == 4) {
-                System.out.println("\u001B[34m" + "Visible Brackets: [" + getColor(visibleBrackets) + visibleBrackets + "\u001B[34m" + "]" + "\u001B[37m");
-                System.out.println("\u001B[34m" + "Input Detection: [" + getColor(inputDetection) + inputDetection + "\u001B[34m" + "]" + "\u001B[37m");
-                System.out.println("\u001B[34m" + "Hard Mode: [" + getColor(hardDifficulty) + hardDifficulty + "\u001B[34m" + "]" + "\u001B[37m");
+                System.out.println("\u001B[34m" + "Visible Brackets: [" + getColor(visibleBrackets) + visibleBrackets
+                        + "\u001B[34m" + "]" + "\u001B[37m");
+                System.out.println("\u001B[34m" + "Input Detection: [" + getColor(inputDetection) + inputDetection
+                        + "\u001B[34m" + "]" + "\u001B[37m");
+                System.out.println("\u001B[34m" + "Hard Mode: [" + getColor(hardDifficulty) + hardDifficulty
+                        + "\u001B[34m" + "]" + "\u001B[37m");
                 System.out.println("\u001B[33m" + "Back" + "\u001B[37m");
             }
         }
@@ -94,10 +106,9 @@ public class MainMenu {
 
     public String getColor(boolean check) {
         if (check == true) {
-            return("\u001B[36m");
-        }
-        else {
-            return("\u001B[31m");
+            return ("\u001B[36m");
+        } else {
+            return ("\u001B[31m");
         }
     }
 

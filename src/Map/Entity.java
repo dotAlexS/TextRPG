@@ -4,8 +4,8 @@ public class Entity {
     int ycor = 0;
 
     public Entity(int xcor, int ycor) {
-        this.xcor = xcor; 
-        this.ycor = ycor; 
+        this.xcor = xcor;
+        this.ycor = ycor;
     }
 
     public void moveX(int step) {
@@ -17,16 +17,22 @@ public class Entity {
     }
 
     public int getX() {
-        return(xcor);
+        return (xcor);
     }
+
     public int getY() {
-        return(ycor);
+        return (ycor);
     }
-  public boolean canMoveCheck(int facing, int amountMoved, Map map){
-    if( facing == 1 && 0 <= ycor - amountMoved ) return true;
-    else if( facing == 2 && map.sizex >= xcor + amountMoved ) return true;
-    else if( facing == 3 && map.sizey >= ycor + amountMoved ) return true;
-    else if( 0 <= xcor - amountMoved ) return true;
-    return false;
-  }
+
+    public boolean canMoveCheck(int facing, int amountMoved, Map map) {
+        if (facing == 1 && 0 <= ycor - amountMoved)
+            return true;
+        else if (facing == 2 && map.sizex >= xcor + amountMoved)
+            return true;
+        else if (facing == 3 && map.sizey >= ycor + amountMoved)
+            return true;
+        else if (0 <= xcor - amountMoved)
+            return true;
+        return false;
+    }
 }

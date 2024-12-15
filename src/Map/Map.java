@@ -1,6 +1,6 @@
 
 public abstract class Map {
-  
+
   int sizex; // IN ARRAY TERMS (-1 compared to regular size)
   int sizey;
 
@@ -33,15 +33,12 @@ public abstract class Map {
     // PLAYER IS O
 
     if (facing == 1) {
-      map[y][x] = entity; //change if terminal doesnt print properly
-    }
-    else if (facing == 2) {
+      map[y][x] = entity; // change if terminal doesnt print properly
+    } else if (facing == 2) {
       map[y][x] = entity;
-    }
-    else if (facing == 3) {
+    } else if (facing == 3) {
       map[y][x] = entity;
-    }
-    else{
+    } else {
       map[y][x] = entity;
     }
     displayMap();
@@ -49,24 +46,20 @@ public abstract class Map {
 
   public void moveEntity(int facing, int amountMoved, int x, int y) {
     if (facing == 1) {
-        map[y - amountMoved][x] = map[y][x];
-        map[y][x] = " ";
+      map[y - amountMoved][x] = map[y][x];
+      map[y][x] = " ";
+    } else if (facing == 2) {
+      map[y][x + amountMoved] = map[y][x];
+      map[y][x] = " ";
+    } else if (facing == 3) {
+      map[y + amountMoved][x] = map[y][x];
+      map[y][x] = " ";
+    } else if (facing == 4) {
+      map[y][x - amountMoved] = map[y][x];
+      map[y][x] = " ";
     }
-    else if (facing == 2) {
-        map[y][x + amountMoved] = map[y][x];
-        map[y][x] = " ";
-    }
-    else if (facing == 3) {  
-        map[y + amountMoved][x] = map[y][x];
-        map[y][x] = " ";
-      }
-    else if (facing == 4) {
-        map[y][x - amountMoved] = map[y][x];
-        map[y][x] = " ";
-      }
     displayMap();
   }
-
 
   public void displayMap() {
     clear();
@@ -80,13 +73,11 @@ public abstract class Map {
       for (int j = 0; j < map[i].length; j++) {
         if (visibleBrackets == true) {
           System.out.print("[" + map[i][j] + "]");
-        }
-        else {
+        } else {
           if (map[i][j] == " ") {
             System.out.print("   ");
-          }
-          else {
-            System.out.print(" " + map[i][j]+ " ");
+          } else {
+            System.out.print(" " + map[i][j] + " ");
           }
         }
       }
@@ -100,13 +91,13 @@ public abstract class Map {
 
   public static void clear() {
     try {
-        if (System.getProperty("os.name").contains("Windows")) {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } else {
-            new ProcessBuilder("clear").inheritIO().start().waitFor();
-        }
+      if (System.getProperty("os.name").contains("Windows")) {
+        new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+      } else {
+        new ProcessBuilder("clear").inheritIO().start().waitFor();
+      }
     } catch (Exception e) {
-        e.printStackTrace();
+      e.printStackTrace();
     }
-}
+  }
 }
