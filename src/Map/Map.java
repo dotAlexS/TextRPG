@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 public abstract class Map {
   
@@ -49,19 +48,19 @@ public abstract class Map {
   }
 
   public void moveEntity(int facing, int amountMoved, int x, int y) {
-    if (facing == 1 && y - amountMoved >= 0) {
+    if (facing == 1) {
         map[y - amountMoved][x] = map[y][x];
         map[y][x] = " ";
     }
-    else if (facing == 2 && x + amountMoved <= sizex) {
+    else if (facing == 2) {
         map[y][x + amountMoved] = map[y][x];
         map[y][x] = " ";
     }
-    else if (facing == 3 && y + amountMoved <= sizey) {   // FIX THE BOUNDERIES
+    else if (facing == 3) {  
         map[y + amountMoved][x] = map[y][x];
         map[y][x] = " ";
       }
-    else if (facing == 4 && x - amountMoved >= 0) {
+    else if (facing == 4) {
         map[y][x - amountMoved] = map[y][x];
         map[y][x] = " ";
       }
