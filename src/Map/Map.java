@@ -36,13 +36,13 @@ public abstract class Map {
     if (facing == 1) {
       map[y][x] = entity; //change if terminal doesnt print properly
     }
-    if (facing == 2) {
+    else if (facing == 2) {
       map[y][x] = entity;
     }
-    if (facing == 3) {
+    else if (facing == 3) {
       map[y][x] = entity;
     }
-    if (facing == 4) {
+    else{
       map[y][x] = entity;
     }
     displayMap();
