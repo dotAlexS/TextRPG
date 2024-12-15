@@ -81,9 +81,6 @@ public class Driver {
                         }
                     }
                 } catch (Exception ex) {
-                    room.displayMap();
-                    System.out.println();
-                    System.out.println("You cannot move out of bounds!");
                 }
             }
 
