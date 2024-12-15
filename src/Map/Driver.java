@@ -59,7 +59,7 @@ public class Driver {
                     switch (e.getKeyChar()) {
                         case 'w': start.step(-1); start.displayMenu(); break;
                         case 's': start.step(1); start.displayMenu(); break;
-                        case 'p': start.select(); start.displayMenu(); if(start.getOption() == 0) {frame.removeKeyListener(this); frame.dispose(); startGame(start);} break;
+                        case ' ': start.select(); start.displayMenu(); if(start.getOption() == 0) {frame.removeKeyListener(this); frame.dispose(); startGame(start);} break;
                         //frame.removeKeyListener(this);
                     }
                 }

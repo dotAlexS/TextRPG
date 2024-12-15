@@ -49,30 +49,22 @@ public abstract class Map {
   }
 
   public void moveEntity(int facing, int amountMoved, int x, int y) {
-    if (facing == 1) {
-      if (y - amountMoved >= 0) {
+    if (facing == 1 && y - amountMoved >= 0) {
         map[y - amountMoved][x] = map[y][x];
         map[y][x] = " ";
-      }
     }
-    if (facing == 2) {
-      if (x + amountMoved <= sizex) {
+    else if (facing == 2 && x + amountMoved <= sizex) {
         map[y][x + amountMoved] = map[y][x];
         map[y][x] = " ";
-      }
     }
-    if (facing == 3) {
-      if (y + amountMoved <= sizey) {   // FIX THE BOUNDERIES
+    else if (facing == 3 && y + amountMoved <= sizey) {   // FIX THE BOUNDERIES
         map[y + amountMoved][x] = map[y][x];
         map[y][x] = " ";
       }
-    }
-    if (facing == 4) {
-      if (x - amountMoved >= 0) {
+    else if (facing == 4 && x - amountMoved >= 0) {
         map[y][x - amountMoved] = map[y][x];
         map[y][x] = " ";
       }
-    }
     displayMap();
   }
 
