@@ -1,8 +1,11 @@
 // Collaborators:
 
+import java.util.Arrays;
+
 public abstract class Adventurer {
   private String name;
   private int HP, maxHP, money;
+  private String[] inv;
 
   public Adventurer(String name, int hp, int money) {
     this.name = name;
@@ -97,5 +100,9 @@ public abstract class Adventurer {
 
   public void setMoney(int money) {
     this.money = money;
+  }
+
+  public void printInv() {
+    System.out.println(Arrays.toString(inv));
   }
 }
