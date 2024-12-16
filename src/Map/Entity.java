@@ -1,3 +1,4 @@
+package Map;
 public class Entity {
 
     int xcor = 0;

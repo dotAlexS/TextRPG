@@ -1,4 +1,4 @@
-
+package Map;
 public class MainMenu {
 
     int option = 1;
@@ -32,7 +32,7 @@ public class MainMenu {
             option += amount;
         }
     }
- 
+
     public void displayMenu() {
         if (isInOptions == false) {
             clear();
