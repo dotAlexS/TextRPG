@@ -87,6 +87,7 @@ public abstract class Map {
     for (int i = 0; i < sizex + 1; i++) {
       System.out.print("___");
     }
+    System.out.println();
   }
 
   public static void clear() {
