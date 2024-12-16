@@ -1,8 +1,8 @@
 package Map;
 public abstract class Map {
 
-  int sizex; // IN ARRAY TERMS (-1 compared to regular size)
-  int sizey;
+  public int sizex; // IN ARRAY TERMS (-1 compared to regular size)
+  public int sizey;
 
   boolean visibleBrackets = true;
 
