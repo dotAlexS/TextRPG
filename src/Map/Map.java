@@ -88,6 +88,10 @@ public abstract class Map {
       System.out.print("___");
     }
     System.out.println();
+    System.out.print("\u001B[34m" + "Up [" + "\u001B[36m" + "w" + "\u001B[34m" + "]" + "          ");
+    System.out.print("\u001B[34m" + "Down [" + "\u001B[36m" + "s" + "\u001B[34m" + "]" + "          ");
+    System.out.print("\u001B[34m" + "Left [" + "\u001B[36m" + "a" + "\u001B[34m" + "]" + "          ");
+    System.out.print("\u001B[34m" + "Left [" + "\u001B[36m" + "d" + "\u001B[34m" + "]" + "          ");
   }
 
   public static void clear() {
