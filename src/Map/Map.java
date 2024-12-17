@@ -1,5 +1,5 @@
 package Map;
-
+import Entities.*;
 public abstract class Map {
 
   public int sizex; // IN ARRAY TERMS (-1 compared to regular size)
@@ -24,7 +24,8 @@ public abstract class Map {
     visibleBrackets = boo;
   }
 
-  public void spawnEntity(int x, int y, int facing, String entity) {
+  public void spawnEntity(int x, int y, int facing, String entityName, Entity Entity) {
+    Entity.setpos(x, y);
     // facing 1 is up
     // facing 2 is right
     // facing 3 is down
@@ -32,15 +33,14 @@ public abstract class Map {
 
     // ENEMY IS ARROWS FOR entity
     // PLAYER IS O
-
     if (facing == 1) {
-      map[y][x] = entity; // change if terminal doesnt print properly
+      map[y][x] = entityName; // change if terminal doesnt print properly
     } else if (facing == 2) {
-      map[y][x] = entity;
+      map[y][x] = entityName;
     } else if (facing == 3) {
-      map[y][x] = entity;
+      map[y][x] = entityName;
     } else {
-      map[y][x] = entity;
+      map[y][x] = entityName;
     }
     displayMap();
   }

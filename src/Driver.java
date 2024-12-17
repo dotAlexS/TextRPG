@@ -29,8 +29,8 @@ public class Driver {
         Map room = new Room1(20, 20);
         room.setBrackets(start.getvisibleBrackets());
         room.displayMap();
-        Entity player = new Entity(2, 2);
-        room.spawnEntity(2, 2, 2, "O");
+        Adventurer player = new Defender("Mother");
+        room.spawnEntity(2, 2, 2, "O", player);
         if (start.getinputDetection() == true) {
             keyDetection(room, player, start, false);
         } else {
