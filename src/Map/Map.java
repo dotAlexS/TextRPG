@@ -1,17 +1,15 @@
 package Map;
 
-import Entities.*;
 public abstract class Map {
 
   public int sizex; // IN ARRAY TERMS (-1 compared to regular size)
   public int sizey;
-  Adventurer P;
 
   boolean visibleBrackets = true;
 
   String[][] map;
 
-  public Map(int sizex, int sizey, Adventurer adventurer) {
+  public Map(int sizex, int sizey) {
     map = new String[sizey][sizex];
     this.sizex = sizex - 1;
     this.sizey = sizey - 1;
@@ -20,14 +18,13 @@ public abstract class Map {
         map[i][j] = " ";
       }
     }
-    P = adventurer;
   }
 
   public void setBrackets(boolean boo) {
     visibleBrackets = boo;
   }
 
-  public void spawnEntity(int x, int y, int facing, String entityName, Entity e) {
+  public void spawnEntity(int x, int y, int facing, String entity) {
     // facing 1 is up
     // facing 2 is right
     // facing 3 is down
@@ -35,15 +32,15 @@ public abstract class Map {
 
     // ENEMY IS ARROWS FOR entity
     // PLAYER IS O
-    e.setpos(x, y);
+
     if (facing == 1) {
-      map[y][x] = entityName; // change if terminal doesnt print properly
+      map[y][x] = entity; // change if terminal doesnt print properly
     } else if (facing == 2) {
-      map[y][x] = entityName;
+      map[y][x] = entity;
     } else if (facing == 3) {
-      map[y][x] = entityName;
+      map[y][x] = entity;
     } else {
-      map[y][x] = entityName;
+      map[y][x] = entity;
     }
     displayMap();
   }
@@ -64,11 +61,10 @@ public abstract class Map {
     }
     displayMap();
   }
-  public abstract void loadMap();
 
   public void displayMap() {
     clear();
-    System.out.print(" ");
+    System.out.print("\u001B[37m" + " ");
     for (int i = 0; i < sizex + 1; i++) {
       System.out.print("___");
     }
@@ -93,10 +89,12 @@ public abstract class Map {
       System.out.print("___");
     }
     System.out.println();
-    System.out.print("\u001B[34m" + "Up [" + "\u001B[36m" + "w" + "\u001B[34m" + "]" + "          ");
-    System.out.print("\u001B[34m" + "Down [" + "\u001B[36m" + "s" + "\u001B[34m" + "]" + "          ");
-    System.out.print("\u001B[34m" + "Left [" + "\u001B[36m" + "a" + "\u001B[34m" + "]" + "          ");
-    System.out.print("\u001B[34m" + "Left [" + "\u001B[36m" + "d" + "\u001B[34m" + "]" + "          ");
+    System.out.print("\u001B[32m" + "Up [" + "\u001B[93m" + "w" + "\u001B[32m" + "]" + "          ");
+    System.out.print("\u001B[32m" + "Down [" + "\u001B[93m" + "s" + "\u001B[32m" + "]" + "          ");
+    System.out.print("\u001B[32m" + "Left [" + "\u001B[93m" + "a" + "\u001B[32m" + "]" + "          ");
+    System.out.println("\u001B[32m" + "Right [" + "\u001B[93m" + "d" + "\u001B[32m" + "]" + "          ");
+    System.out.println("                         " + "\u001B[32m" + "Exit [" + "\u001B[93m" + "p" + "\u001B[32m" + "]");
+    System.out.print("\u001B[37m" + " ");
   }
 
   public static void clear() {

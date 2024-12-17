@@ -17,6 +17,10 @@ public class MainMenu {
         return (option);
     }
 
+    public void setOption(int num) {
+        option = num;
+    }
+
     public boolean getvisibleBrackets() {
         return (visibleBrackets);
     }
