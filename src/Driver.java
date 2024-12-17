@@ -14,79 +14,64 @@ public class Driver {
 
         keyDetection(null, null, start, true);
 
-
-        // clear();
-        // room.displayMap();
-
-        // MoveTest player = new MoveTest(2, 2);
-
-        // room.spawnEntity(2, 2, 2, "O");
-
-        // keyDetection(room, player);
-
     }
 
     public static void startGame(MainMenu start) {
-        Map room = new Room1(20, 20);
+        Adventurer player = new Defender("Mother");
+        Map room = new StartRoom(20, 20, player);
         room.setBrackets(start.getvisibleBrackets());
         room.displayMap();
-        Entity player = new Entity(2, 2, 100.0, 10, 10 ,10);
-        Entity enemy = new Entity(1, 1, 100.0, 10, 10, 6);
-        room.spawnEntity(2, 2, 2, "O");
-
 
         if (start.getinputDetection() == true) {
-            Battle fight = new Battle(player, enemy);  //////////////////////// BATTLE TEST
-            fight.encounter();
-            //keyDetection(room, player, start, false);
+            //Battle fight = new Battle(player, enemy); //////////////////////// BATTLE TEST
+            //fight.encounter();
+            keyDetection(room, player, start, false);
         } else {
-          while (true) {
-            Scanner myObj = new Scanner(System.in);
-            String option = myObj.nextLine();
-            if (option.equals("w")) {
-              if (player.canMoveCheck(1, 1, room)) {
-                  room.moveEntity(1, 1, player.getX(), player.getY());
-                  player.moveY(-1);
-                  continue;
-              }
+            while (true) {
+                Scanner myObj = new Scanner(System.in);
+                String option = myObj.nextLine(); 
+
+                // code breaks when moving out of bounds
+
+                if (option.equals("w")) {
+                    if (player.canMoveCheck(1, 1, room)) {
+                        room.moveEntity(1, 1, player.getX(), player.getY());
+                        player.moveY(-1);
+                        continue;
+                    }
+                } else if (option.equals("a")) {
+                    if (player.canMoveCheck(4, 1, room)) {
+                        room.moveEntity(4, 1, player.getX(), player.getY());
+                        player.moveX(-1);
+                        continue;
+                    }
+                } else if (option.equals("s")) {
+                    if (player.canMoveCheck(3, 1, room)) {
+                        room.moveEntity(3, 1, player.getX(), player.getY());
+                        player.moveY(1);
+                        continue;
+                    }
+                } else if (option.equals("d")) {
+                    if (player.canMoveCheck(2, 1, room)) {
+                        room.moveEntity(2, 1, player.getX(), player.getY());
+                        player.moveX(1);
+                        continue;
+                    }
+                } else if (option.equals("p")) {
+                    start.setOption(1);
+                    start.displayMenu();
+                    keyDetection(null, null, start, true);
+                } else {
+                    System.out.println("Wrong Input. Try Again.");
+                    continue;
+                }
             }
-            else if (option.equals("a")) {
-              if (player.canMoveCheck(4, 1, room)) {
-                  room.moveEntity(4, 1, player.getX(), player.getY());
-                  player.moveX(-1);
-                  continue;
-              }
-            }
-            else if (option.equals("s")) {
-              if (player.canMoveCheck(3, 1, room)) {
-                  room.moveEntity(3, 1, player.getX(), player.getY());
-                  player.moveY(1);
-                  continue;
-              }
-            }
-            else if (option.equals("d")) {
-              if (player.canMoveCheck(2, 1, room)) {
-                  room.moveEntity(2, 1, player.getX(), player.getY());
-                  player.moveX(1);
-                  continue;
-              }
-            }
-            else if (option.equals("p")) {
-                start.setOption(1);
-                start.displayMenu();
-                keyDetection(null, null, start, true);
-            }
-            else {
-                System.out.println("Wrong Input. Try Again.");
-                continue;
-            }
-          }
         }
-      }
+    }
 
     public static void keyDetection(Map room, Entity player, MainMenu start, boolean inMenu) {
         JFrame frame = new JFrame("");
-        frame.setSize(20, 20);
+        frame.setSize(1, 1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         // Add KeyListener for input

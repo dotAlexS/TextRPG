@@ -2,40 +2,23 @@ package Entities;
 
 import Map.Map;
 
-public class Entity {
+public abstract class Entity {
 
-    int xcor = 0;
-    int ycor = 0;
+    private String name;
+    private int HP, maxHP, money;
+    public int xcor = 0;
+    public int ycor = 0;
 
-    double health = 0.0;
+    public Entity(String name, int maxHP, int money) {
+        this.name = name;
+        this.maxHP = maxHP;
+        this.money = money;
+    }
+    public abstract int attack();
 
-    double melee = 0;
-    double defense = 0;
-    double speed = 0;
-
-    public Entity(int xcor, int ycor, double health, double defense, double melee, double speed) {
+    public void setpos(int xcor, int ycor) {
         this.xcor = xcor;
         this.ycor = ycor;
-        this.health = health;
-        this.defense = defense;
-        this.melee = melee;
-        this.speed = speed;
-    }
-
-    public double getHealth() {
-        return(health);
-    }
-
-    public double getMelee() {
-        return(melee);
-    }
-
-    public double getDefense() {
-        return(defense);
-    }
-
-    public double getSpeed() {
-        return(speed);
     }
 
     public void moveX(int step) {
@@ -45,7 +28,7 @@ public class Entity {
     public void moveY(int step) {
         ycor += step;
     }
-
+//getters and setters
     public int getX() {
         return (xcor);
     }
@@ -53,6 +36,39 @@ public class Entity {
     public int getY() {
         return (ycor);
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getHP() {
+        return HP;
+    }
+
+    public void setHP(int hP) {
+        HP = hP;
+    }
+
+    public int getMaxHP() {
+        return maxHP;
+    }
+
+    public void setMaxHP(int maxHP) {
+        this.maxHP = maxHP;
+    }
+
+    public int getMoney() {
+        return money;
+    }
+
+    public void setMoney(int money) {
+        this.money = money;
+    }
+// end getters and setters
 
     public boolean canMoveCheck(int facing, int amountMoved, Map map) {
         if (facing == 1 && 0 <= ycor - amountMoved)

@@ -1,19 +1,50 @@
 package Entities;
 
-import java.util.Arrays;
-
 public abstract class Adventurer extends Entity {
-  private String name;
-  private int HP, maxHP, money;
-  private String[] inv;
+  private String[] inv = new String[10];
 
-  public Adventurer(String name, int maxHP, int money){
-    this.name = name;
-    this.maxHP = maxHP;
-    this.money = money;
+  public Adventurer(String name, int maxHP, int money) {
+    super(name, maxHP, money);
   }
 
+  public int restoreSpecial(int n) {
+    if (n > getSpecialMax() - getSpecial()) {
+      n = getSpecialMax() - getSpecial();
+    }
+    setSpecial(getSpecial() + n);
+    return n;
+  }
 
+  public abstract String getSpecialName();
 
+  public abstract int getSpecial();
+
+  public abstract void setSpecial(int n);
+
+  public abstract int getSpecialMax();
+
+  public String[] getInv() {
+    return inv;
+  }
+
+  public void setInv(String[] inv) {
+    this.inv = inv;
+  }
+
+  public void collect(String item) {
+    for (int i = 0; i < inv.length; i++) {
+      if (i == inv.length - 1) {
+        System.out.println("Not enough inventory space.");
+      }
+      if (inv[i] == null)
+        inv[i] = item;
+    }
+  }
+
+  public void trashItem(int itemIndex){
+    for (int i = itemIndex; i < inv.length-1; i++){
+      inv[i] = inv[i+1];
+    }
+  }
 
 }
