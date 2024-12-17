@@ -26,11 +26,10 @@ public class Driver {
     }
 
     public static void startGame(MainMenu start) {
-        Map room = new Room1(20, 20);
+        Adventurer player = new Defender("Mother");
+        Map room = new StartRoom(20, 20, player);
         room.setBrackets(start.getvisibleBrackets());
         room.displayMap();
-        Adventurer player = new Defender("Mother");
-        room.spawnEntity(2, 2, 2, "O", player);
         if (start.getinputDetection() == true) {
             keyDetection(room, player, start, false);
         } else {

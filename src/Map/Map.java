@@ -1,15 +1,17 @@
 package Map;
+
 import Entities.*;
 public abstract class Map {
 
   public int sizex; // IN ARRAY TERMS (-1 compared to regular size)
   public int sizey;
+  Adventurer P;
 
   boolean visibleBrackets = true;
 
   String[][] map;
 
-  public Map(int sizex, int sizey) {
+  public Map(int sizex, int sizey, Adventurer adventurer) {
     map = new String[sizey][sizex];
     this.sizex = sizex - 1;
     this.sizey = sizey - 1;
@@ -18,14 +20,14 @@ public abstract class Map {
         map[i][j] = " ";
       }
     }
+    P = adventurer;
   }
 
   public void setBrackets(boolean boo) {
     visibleBrackets = boo;
   }
 
-  public void spawnEntity(int x, int y, int facing, String entityName, Entity Entity) {
-    Entity.setpos(x, y);
+  public void spawnEntity(int x, int y, int facing, String entityName, Entity e) {
     // facing 1 is up
     // facing 2 is right
     // facing 3 is down
@@ -33,6 +35,7 @@ public abstract class Map {
 
     // ENEMY IS ARROWS FOR entity
     // PLAYER IS O
+    e.setpos(x, y);
     if (facing == 1) {
       map[y][x] = entityName; // change if terminal doesnt print properly
     } else if (facing == 2) {
@@ -61,6 +64,7 @@ public abstract class Map {
     }
     displayMap();
   }
+  public abstract void loadMap();
 
   public void displayMap() {
     clear();
