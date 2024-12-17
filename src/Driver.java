@@ -14,6 +14,7 @@ public class Driver {
 
         keyDetection(null, null, start, true);
 
+
         // clear();
         // room.displayMap();
 
@@ -26,12 +27,18 @@ public class Driver {
     }
 
     public static void startGame(MainMenu start) {
-        Adventurer player = new Defender("Mother");
-        Map room = new StartRoom(20, 20, player);
+        Map room = new Room1(20, 20);
         room.setBrackets(start.getvisibleBrackets());
         room.displayMap();
+        Entity player = new Entity(2, 2, 100.0, 10, 10 ,10);
+        Entity enemy = new Entity(1, 1, 100.0, 10, 10, 6);
+        room.spawnEntity(2, 2, 2, "O");
+
+
         if (start.getinputDetection() == true) {
-            keyDetection(room, player, start, false);
+            Battle fight = new Battle(player, enemy);  //////////////////////// BATTLE TEST
+            fight.encounter();
+            //keyDetection(room, player, start, false);
         } else {
           while (true) {
             Scanner myObj = new Scanner(System.in);
@@ -43,30 +50,35 @@ public class Driver {
                   continue;
               }
             }
-            if (option.equals("a")) {
+            else if (option.equals("a")) {
               if (player.canMoveCheck(4, 1, room)) {
                   room.moveEntity(4, 1, player.getX(), player.getY());
                   player.moveX(-1);
                   continue;
               }
             }
-            if (option.equals("s")) {
+            else if (option.equals("s")) {
               if (player.canMoveCheck(3, 1, room)) {
                   room.moveEntity(3, 1, player.getX(), player.getY());
                   player.moveY(1);
                   continue;
               }
             }
-            if (option.equals("d")) {
+            else if (option.equals("d")) {
               if (player.canMoveCheck(2, 1, room)) {
                   room.moveEntity(2, 1, player.getX(), player.getY());
                   player.moveX(1);
                   continue;
               }
             }
+            else if (option.equals("p")) {
+                start.setOption(1);
+                start.displayMenu();
+                keyDetection(null, null, start, true);
+            }
             else {
-              System.out.println("Wrong Input. Try Again.");
-              continue;
+                System.out.println("Wrong Input. Try Again.");
+                continue;
             }
           }
         }
@@ -112,6 +124,13 @@ public class Driver {
                                     break;
                                 } else
                                     break;
+                            case 'p':
+                                start.setOption(1);
+                                start.displayMenu();
+                                keyDetection(null, null, start, true);
+                                frame.removeKeyListener(this);
+                                frame.dispose();
+                                break;
                         }
                     } else {
                         switch (e.getKeyChar()) {
