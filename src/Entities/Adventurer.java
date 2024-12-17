@@ -1,4 +1,5 @@
-package Adventureres;
+package Entities;
+
 import java.util.Arrays;
 
 public abstract class Adventurer extends Entity {

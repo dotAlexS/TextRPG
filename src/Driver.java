@@ -2,8 +2,9 @@
 import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Scanner;
+import Entities.*;
 import Map.*;
-import Adventureres.*;
 
 public class Driver {
     public static void main(String[] args) {

@@ -1,4 +1,5 @@
 package Map;
+
 public abstract class Map {
 
   public int sizex; // IN ARRAY TERMS (-1 compared to regular size)

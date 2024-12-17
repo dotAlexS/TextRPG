@@ -1,4 +1,5 @@
 package Map;
+
 public class MainMenu {
 
     int option = 1;
