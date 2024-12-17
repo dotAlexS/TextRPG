@@ -1,6 +1,6 @@
 package Entities;
 
-public class Enemy extends Entity{
+public abstract class Enemy extends Entity{
 
     private int atkStandard;
 
