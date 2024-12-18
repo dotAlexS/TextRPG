@@ -190,9 +190,9 @@ public class Battle {
                 try {
                     if (wonFight) {
                         player.setFight(false);
-                        player.setMoney(player.getMoney() + 10);
+                        player.setMoney(player.getMoney() + enemy.getMoney());
                         System.out.println("You Have Won the Fight!");
-                        System.out.println("Obtained 10 Gold");
+                        System.out.println("Obtained " + enemy.getMoney() + " Gold");
                         switch (e.getKeyChar()) {
                             case ' ':
                                 frame.removeKeyListener(this);

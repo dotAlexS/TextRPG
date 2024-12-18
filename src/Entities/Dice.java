@@ -10,6 +10,10 @@ public class Dice {
     public static int d10() {
         return (int) (Math.random() * 10) + 1;
     }
+    
+    public static int d4() {
+        return (int) (Math.random() * 4) + 1;
+    }
 
     public static int coin() {
         return (int) (Math.random() * 2) + 1;
