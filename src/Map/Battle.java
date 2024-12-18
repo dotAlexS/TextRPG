@@ -33,14 +33,14 @@ public class Battle {
     static int turns = 0;      /////////////////// IMPLEMENT SUPER
 
     public Battle(Entity player, Entity enemy) {
-        playerHealth = player.getHealth();
+        playerHealth = player.getHP();
         playerSpeed = player.getSpeed();
-        playerMelee = player.getMelee();
+        playerMelee = player.getAtkStandard();
         playerDefense = player.getDefense();
         
-        enemyHealth = enemy.getHealth();
+        enemyHealth = enemy.getHP();
         enemySpeed = enemy.getSpeed();
-        enemyMelee = enemy.getMelee();
+        enemyMelee = enemy.getAtkStandard();
         enemyDefense = enemy.getDefense();
 
         enemyStack = enemySpeed;
