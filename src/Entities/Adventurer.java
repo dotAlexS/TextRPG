@@ -17,7 +17,7 @@ public abstract class Adventurer extends Entity {
     }
     setSpecial(getSpecial() + n);
   }
-
+  public abstract void doSpecial(Entity Enemy);
   public void attack(Entity other) {
     restoreSpecial(1);
     int roll = Dice.d20();

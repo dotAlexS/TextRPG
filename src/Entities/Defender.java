@@ -12,7 +12,7 @@ public class Defender extends Adventurer {
     }
 
 
-    public void doSpecial() {
+    public void doSpecial(Entity Enemy) {
         setSpecial(0);
         invincible = 3;
     }

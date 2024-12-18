@@ -244,13 +244,13 @@ public class Battle {
                                 break;
                             case 'v':
                                 if (canSpecial) {
-                                    player.doSpecial(); //////////////////////////////////////////////////////////////////////////////////////  HERE
+                                    player.doSpecial(enemy); //////////////////////////////////////////////////////////////////////////////////////  HERE
                                 }
                             case ' ':
                                 select();
                                 break;
                         }
-                    }
+                    } 
                 } 
                 catch (Exception ex) {
                 }
