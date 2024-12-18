@@ -70,7 +70,7 @@ public class Driver {
         }
     }
 
-    public static boolean fight(Entity player, Entity enemy, Map room, MainMenu start) {
+    public static boolean fight(Adventurer player, Entity enemy, Map room, MainMenu start) {
         Battle fight = new Battle(player, enemy);
         player.setFight(true);
         fight.encounter(); // The method will block until the battle ends
