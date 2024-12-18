@@ -3,7 +3,7 @@ package Entities;
 public class Swordsman extends Adventurer {
 
     public Swordsman(String Name) {
-        super(Name, 100, 50, 10, 14, 12);
+        super(Name, 100, 150, 10, 14, 12);
         setSpecial(0);
         setSpecialMax(2);
         setSpecialName("Fury Slashes");
@@ -21,14 +21,16 @@ public class Swordsman extends Adventurer {
         System.out.print(this.getName() + " rolled a " + roll);
         if (roll < 3) {
             System.out.print(" and misses.");
-        } else if (roll <= 19) {
-            double dmg = (roll / 10) * this.getAtkStandard();
+        } 
+        else if (roll <= 19){
+            double dmg = (roll / 10) * this.getAtkStandard() * (1 - other.getDefense() / 100);
             System.out.print(" And hits for " + dmg + " damage.");
             other.applyDamage((int) dmg);
-        } else {
-            int dmg = 3 * this.getAtkStandard();
+        }
+        else{
+            double dmg = 3 * this.getAtkStandard() * ( 1 -other.getDefense() / 100);
             System.out.println(" dealing a critical hit for " + dmg + " damage.");
-            other.applyDamage(dmg);
+            other.applyDamage((int) dmg);
         }
     }
 

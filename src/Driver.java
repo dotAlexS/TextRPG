@@ -65,6 +65,7 @@ public class Driver {
                     System.out.println("Wrong Input. Try Again.");
                     continue;
                 }
+                myObj.close();
             }
         }
     }

@@ -3,9 +3,9 @@ package Entities;
 public class Ranger extends Adventurer{
 
     public Ranger(String Name){
-        super(Name, 100, 50, 10, 14, 12);
+        super(Name, 80, 150, 10, 10, 8);
         setSpecial(0);
-        setSpecialMax(0);
+        setSpecialMax(3);
         setSpecialName("Air Support");
     }
     
@@ -18,18 +18,20 @@ public class Ranger extends Adventurer{
     }
 
     public void spAttack(Entity other) {
-        int roll = Dice.advantage20();
+        int roll = Dice.advantage20() * 2;
         System.out.print(this.getName() + " rolled a " + roll);
         if (roll < 3) {
             System.out.print(" and misses.");
-        } else if (roll <= 19) {
-            double dmg = (roll / 10) * this.getAtkStandard();
+        } 
+        else if (roll <= 19){
+            double dmg = (roll / 10) * this.getAtkStandard() * (1 - other.getDefense() / 100);
             System.out.print(" And hits for " + dmg + " damage.");
             other.applyDamage((int) dmg);
-        } else {
-            int dmg = 3 * this.getAtkStandard();
+        }
+        else{
+            double dmg = 3 * this.getAtkStandard() * ( 1 - other.getDefense() / 100) * 3;
             System.out.println(" dealing a critical hit for " + dmg + " damage.");
-            other.applyDamage(dmg);
+            other.applyDamage((int) dmg);
         }
     }
 }
