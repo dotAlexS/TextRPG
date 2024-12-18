@@ -6,7 +6,7 @@ public class Defender extends Adventurer {
     private String specialName;
 
     public Defender(String name){
-        super(name, 100, 150);
+        super(name, 100, 150, 6, 30, 10);
         special = 0;
         specialMax = 15;
         specialName = "Super Immunity";

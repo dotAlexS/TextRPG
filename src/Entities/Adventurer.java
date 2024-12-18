@@ -3,8 +3,8 @@ package Entities;
 public abstract class Adventurer extends Entity {
   private String[] inv = new String[10];
 
-  public Adventurer(String name, int maxHP, int money) {
-    super(name, maxHP, money);
+  public Adventurer(String name, int maxHP, int money, int atkStandard, int defense, int speed) {
+    super(name, maxHP, money, atkStandard, defense, speed);
   }
 
   public int restoreSpecial(int n) {
