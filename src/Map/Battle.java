@@ -4,7 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.lang.Math;
 
-import Entities.*;
+import Entities.Dice;
 
 public class Battle {
 

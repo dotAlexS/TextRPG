@@ -23,9 +23,9 @@ public class Driver {
         room.displayMap();
 
         if (start.getinputDetection() == true) {
-            //Battle fight = new Battle(player, enemy); //////////////////////// BATTLE TEST
-            //fight.encounter();
-            keyDetection(room, player, start, false);
+            Battle fight = new Battle(player, enemy); //////////////////////// BATTLE TEST
+            fight.encounter();
+            //keyDetection(room, player, start, false);
         } else {
             while (true) {
                 Scanner myObj = new Scanner(System.in);

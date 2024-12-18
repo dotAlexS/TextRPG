@@ -68,7 +68,7 @@ public abstract class Map {
 
   public void displayMap() {
     clear();
-    System.out.print(" ");
+    System.out.print("\u001B[37m" + " ");
     for (int i = 0; i < sizex + 1; i++) {
       System.out.print("___");
     }
@@ -93,10 +93,12 @@ public abstract class Map {
       System.out.print("___");
     }
     System.out.println();
-    System.out.print("\u001B[34m" + "Up [" + "\u001B[36m" + "w" + "\u001B[34m" + "]" + "          ");
-    System.out.print("\u001B[34m" + "Down [" + "\u001B[36m" + "s" + "\u001B[34m" + "]" + "          ");
-    System.out.print("\u001B[34m" + "Left [" + "\u001B[36m" + "a" + "\u001B[34m" + "]" + "          ");
-    System.out.print("\u001B[34m" + "Left [" + "\u001B[36m" + "d" + "\u001B[34m" + "]" + "          ");
+    System.out.print("\u001B[32m" + "Up [" + "\u001B[93m" + "w" + "\u001B[32m" + "]" + "          ");
+    System.out.print("\u001B[32m" + "Down [" + "\u001B[93m" + "s" + "\u001B[32m" + "]" + "          ");
+    System.out.print("\u001B[32m" + "Left [" + "\u001B[93m" + "a" + "\u001B[32m" + "]" + "          ");
+    System.out.println("\u001B[32m" + "Right [" + "\u001B[93m" + "d" + "\u001B[32m" + "]" + "          ");
+    System.out.println("                         " + "\u001B[32m" + "Exit [" + "\u001B[93m" + "p" + "\u001B[32m" + "]");
+    System.out.print("\u001B[37m" + " ");
   }
 
   public static void clear() {
