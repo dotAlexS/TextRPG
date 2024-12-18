@@ -73,6 +73,10 @@ public abstract class Entity {
     public void setHP(int hP) {
         HP = hP;
     }
+
+    public void changeHP(double amount) {
+        HP += amount;
+    }
     
     public int getMaxHP() {
         return maxHP;
