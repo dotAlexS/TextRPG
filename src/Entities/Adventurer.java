@@ -4,6 +4,7 @@ public abstract class Adventurer extends Entity {
   private String[] inv = new String[10];
 
   //test
+
   public Adventurer(String name, int maxHP, int money, int atkStandard, int defense, int speed) {
     super(name, maxHP, money, atkStandard, defense, speed);
   }

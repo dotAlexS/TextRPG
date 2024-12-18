@@ -3,24 +3,13 @@ import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.lang.Math;
+
 import Entities.*;
 
 public class Battle {
 
     static int option = 1;
     static boolean inBattle = false;
-
-    static double playerHealth = 0;
-    static double enemyHealth = 0;
-
-    static double playerMelee = 0;
-    static double enemyMelee = 0;
-
-    static double playerSpeed = 0;
-    static double enemySpeed = 0;
-
-    static double playerDefense = 0;
-    static double enemyDefense = 0;
 
     static double playerStack = 0;
     static double enemyStack = 0;
@@ -29,20 +18,17 @@ public class Battle {
 
     static boolean isInOptions = false;
 
+    static Entity player;
+    static Entity enemy;
+
     static int turns = 0;      /////////////////// IMPLEMENT SUPER
 
     public Battle(Entity player, Entity enemy) {
-        playerHealth = player.getHP();
-        playerSpeed = player.getSpeed();
-        playerMelee = player.getAtkStandard();
-        playerDefense = player.getDefense();
-        
-        enemyHealth = enemy.getHP();
-        enemySpeed = enemy.getSpeed();
-        enemyMelee = enemy.getAtkStandard();
-        enemyDefense = enemy.getDefense();
 
-        enemyStack = enemySpeed;
+        Battle.player = player;
+        Battle.enemy = enemy;
+
+        enemyStack = enemy.getSpeed();
     }
 
     public static void startBattle() {
@@ -61,48 +47,53 @@ public class Battle {
         clear();
         turns += 1;
         System.out.println();
-        playerStack += playerSpeed;
-        enemyStack += enemySpeed;
+        playerStack += player.getSpeed();
+        enemyStack += enemy.getSpeed();
         if (enemyStack <= playerStack) {
             System.out.println("\u001B[96m" + "This is an Extra Turn due to Player's Higher Speed." + "\u001B[37m"); /////////////////////// ADD ENEMY EXTRA TURN MAYBE
         }
         if (choice.equals("melee")) {
             if ((Math.random() * 10) + 1 > 9) {
                 System.out.println("\u001B[96m" + "You Have Landed a Critical Hit." + "\u001B[37m");
-                System.out.println("Enemy Takes " + (enemyHealth - (enemyHealth -= playerMelee * (2 - enemyDefense / 100))) + " Points of Damage");
+                enemy.changeHP(-1 * player.getAtkStandard() * (2 - enemy.getDefense() / 100));
+                System.out.println("Enemy Takes " + (player.getAtkStandard() * (2 - enemy.getDefense() / 100)) + " Points of Damage");
             }
             else {
-                System.out.println("Enemy Takes " + (enemyHealth - (enemyHealth -= playerMelee * (1 - enemyDefense / 100))) + " Points of Damage");
+                enemy.changeHP(-1 * player.getAtkStandard() * (1 - enemy.getDefense() / 100));
+                System.out.println("Enemy Takes " + (player.getAtkStandard() * (1 - enemy.getDefense() / 100)) + " Points of Damage");
             }
             // ADD ENEMY AI HERE IF TIME
             if (enemyStack > playerStack) {
-                System.out.println("Player Takes " + (playerHealth - (playerHealth -= enemyMelee * (1 - playerDefense / 100))) + " Points of Damage");
+                player.changeHP(-1 * enemy.getAtkStandard() * (1 - player.getDefense() / 100));
+                System.out.println("Player Takes " + (enemy.getAtkStandard() * (1 - player.getDefense() / 100)) + " Points of Damage");
             }
             else {
                 playerStack = 0;
-                enemyStack = enemySpeed;
+                enemyStack = enemy.getSpeed();
             }
         }
         else if (choice.equals("guard")) {
             if (enemyStack > playerStack) {
-                System.out.println("Player Takes " + (playerHealth - (playerHealth -= enemyMelee * (1 - (playerDefense * 3) / 100))) + " Points of Damage");
+                player.changeHP(-1 * enemy.getAtkStandard() * (1 - (player.getDefense() * 3) / 100));
+                System.out.println("Player Takes " + (enemy.getAtkStandard() * (1 - (player.getDefense() * 3) / 100)) + " Points of Damage");
             }
             else {
                 playerStack = 0;
-                enemyStack = enemySpeed;
+                enemyStack = enemy.getSpeed();
             }
         }
         else if (choice.equals("run")) {
-            if ((Math.random() * 10) + 1 + enemySpeed - playerSpeed >= 9) {
+            if ((Math.random() * 10) + 1 + enemy.getSpeed() - player.getSpeed() >= 9) {
                 System.out.println("You Have Successfully Ran Away"); /////////////////////////////////// IMPLEMENT
             }
             else {
                 if (enemyStack > playerStack) {
-                    System.out.println("Player Takes " + (playerHealth - (playerHealth -= enemyMelee * (1 - playerDefense / 100))) + " Points of Damage");
+                    player.changeHP(-1 * enemy.getAtkStandard() * (1 - player.getDefense() / 100));
+                    System.out.println("Player Takes " + (enemy.getAtkStandard() * (1 - player.getDefense() / 100)) + " Points of Damage");
                 }
                 else {
                     playerStack = 0;
-                    enemyStack = enemySpeed;
+                    enemyStack = enemy.getSpeed();
                 }
             }
         }
@@ -115,17 +106,18 @@ public class Battle {
     }
 
     public static void printOptions() {
-        if (enemyHealth <= 0) {
+        if (enemy.getHP() <= 0) {
             
         }
-        if (playerHealth <= 0) {     ////////////////////////////////////////////////////// IMPLEMENT WITH RUN AWAY. ADD LOOT HERE THO MB
+        if (player.getHP() <= 0) {     ////////////////////////////////////////////////////// IMPLEMENT WITH RUN AWAY. ADD LOOT HERE THO MB
 
         }
         clear();
+        System.out.println(player.getHP());
         isInOptions = true;
         System.out.println();
         System.out.println("Player Health:                                           Enemy Health:");
-        System.out.println("      " + playerHealth + "                                                   " + enemyHealth);
+        System.out.println("      " + player.getHP() + "                                                   " + enemy.getHP());
         System.out.println();
         System.out.println("                      What Will you do:");
         System.out.println();
