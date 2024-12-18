@@ -11,17 +11,17 @@ public abstract class Enemy extends Entity{
         int roll = Dice.d20();
         System.out.println( this.getName() + " rolled a "+ roll);
         if (roll < 4){
-            System.out.println(" and misses.");
+            System.out.print(" and misses.");
         }
         else if (roll <= 19){
-            int dmg = (roll / 10) * this.getAtkStandard();
-            System.out.println(" And hits for " + dmg + " damage.");
-            other.setHP(other.getHP() - dmg);
+            double dmg = (roll / 10) * this.getAtkStandard() - (1 - other.getDefense() / 100);
+            System.out.print(" And hits for " + dmg + " damage.");
+            other.applyDamage((int) dmg);
         }
         else{
-            int dmg = 3 * this.getAtkStandard();
+            int dmg = 3 * this.getAtkStandard() - (2 - other.getDefense() / 100);
             System.out.println(" dealing a critical hit for " + dmg + " damage.");
-            other.setHP(other.getHP() - dmg);
+            other.applyDamage(dmg);
         }
     }
 }

@@ -81,10 +81,6 @@ public abstract class Entity {
     public void setMaxHP(int maxHP) {
         this.maxHP = maxHP;
     }
-
-    public void changeHP(int amount) {
-        this.HP += amount;
-    }
     
     public int getMoney() {
         return money;
@@ -104,6 +100,9 @@ public abstract class Entity {
     }
     public void setAtkStandard(int atkStandard) {
         this.atkStandard = atkStandard;
+    }
+    public void applyDamage(int damage){
+        this.HP -= damage;
     }
     // end getters and setters
     
