@@ -19,13 +19,17 @@ public class Battle {
     static boolean isInOptions = false;
 
     public static boolean wonFight = false;
+    public static boolean ranAway = false;
 
-    static Entity player;
+    public static boolean canSpecial = false;
+    static int special = 0;
+
+    static Adventurer player;
     static Entity enemy;
 
     static int turns = 0;      /////////////////// IMPLEMENT SUPER
 
-    public Battle(Entity player, Entity enemy) {
+    public Battle(Adventurer player, Entity enemy) {
 
         Battle.player = player;
         Battle.enemy = enemy;
@@ -49,26 +53,19 @@ public class Battle {
     public static void fight() {
         clear();
         turns += 1;
+        
+        player.restoreSpecial(1);
+
         System.out.println();
         playerStack += player.getSpeed();
         enemyStack += enemy.getSpeed();
         if (enemyStack <= playerStack) {
-            System.out.println("\u001B[96m" + "This is an Extra Turn due to Player's Higher Speed." + "\u001B[37m"); /////////////////////// ADD ENEMY EXTRA TURN MAYBE
+            System.out.println("\u001B[96m" + "This is an Extra Turn due to Player's Higher Speed." + "\u001B[37m"); 
         }
         if (choice.equals("melee")) {
-            if ((Math.random() * 10) + 1 > 9) {
-                System.out.println("\u001B[96m" + "You Have Landed a Critical Hit." + "\u001B[37m");
-                enemy.changeHP(-1 * player.getAtkStandard() * (2 - enemy.getDefense() / 100));
-                System.out.println("Enemy Takes " + (player.getAtkStandard() * (2 - enemy.getDefense() / 100)) + " Points of Damage");
-            }
-            else {
-                enemy.changeHP(-1 * player.getAtkStandard() * (1 - enemy.getDefense() / 100));
-                System.out.println("Enemy Takes " + (player.getAtkStandard() * (1 - enemy.getDefense() / 100)) + " Points of Damage");
-            }
-            // ADD ENEMY AI HERE IF TIME
+            player.attack(enemy);
             if (enemyStack > playerStack) {
-                player.changeHP(-1 * enemy.getAtkStandard() * (1 - player.getDefense() / 100));
-                System.out.println("Player Takes " + (enemy.getAtkStandard() * (1 - player.getDefense() / 100)) + " Points of Damage");
+                enemy.attack(player);
             }
             else {
                 playerStack = 0;
@@ -77,8 +74,10 @@ public class Battle {
         }
         else if (choice.equals("guard")) {
             if (enemyStack > playerStack) {
-                player.changeHP(-1 * enemy.getAtkStandard() * (1 - (player.getDefense() * 3) / 100));
-                System.out.println("Player Takes " + (enemy.getAtkStandard() * (1 - (player.getDefense() * 3) / 100)) + " Points of Damage");
+                player.setDefense(player.getDefense() * 3);
+                enemy.attack(player);
+                player.setSpecial(player.getSpecial() + 1);
+                player.setDefense(player.getDefense() / 3);
             }
             else {
                 playerStack = 0;
@@ -87,12 +86,12 @@ public class Battle {
         }
         else if (choice.equals("run")) {
             if ((Math.random() * 10) + 1 + enemy.getSpeed() - player.getSpeed() >= 9) {
-                System.out.println("You Have Successfully Ran Away"); /////////////////////////////////// IMPLEMENT
+                System.out.println("You Have Successfully Ran Away."); 
+                ranAway = true;
             }
             else {
                 if (enemyStack > playerStack) {
-                    player.changeHP(-1 * enemy.getAtkStandard() * (1 - player.getDefense() / 100));
-                    System.out.println("Player Takes " + (enemy.getAtkStandard() * (1 - player.getDefense() / 100)) + " Points of Damage");
+                    enemy.attack(player);
                 }
                 else {
                     playerStack = 0;
@@ -108,12 +107,12 @@ public class Battle {
         if (enemy.getHP() <= 0) {
             wonFight = true;
         }
-        if (player.getHP() <= 0) {     ////////////////////////////////////////////////////// IMPLEMENT WITH RUN AWAY. ADD LOOT HERE THO MB
+        if (player.getHP() <= 0) { 
             clear();
             System.out.println("You have lost.");
             System.exit(0);
         }
-        if (wonFight == false) {
+        if (wonFight == false && ranAway == false) {
             clear();
             System.out.println(player.getHP());
             isInOptions = true;
@@ -146,6 +145,12 @@ public class Battle {
                 System.out.println("\u001B[34m" + "                   Inventory          " + "\u001B[37m");
                 System.out.print("\u001B[34m" + "          Guard             " + "\u001B[37m");
                 System.out.println("\u001B[33m" + "                Run          " + "\u001B[37m");
+            }
+
+            if (player.getSpecial() >= player.getSpecialMax()) {
+                System.out.println("You May Use Your Special Move [v]: " + player.getSpecialName());
+                canSpecial = true;
+                
             }
         }
 
@@ -195,6 +200,15 @@ public class Battle {
                                 break;
                         }
                     }
+                    else if (ranAway == true) {
+                        player.setFight(false);
+                        switch (e.getKeyChar()) {
+                            case ' ':
+                                frame.removeKeyListener(this);
+                                frame.dispose();
+                                break;
+                        }
+                    }
                     if (inBattle == false) {
                         switch (e.getKeyChar()) {
                             case ' ':
@@ -228,6 +242,10 @@ public class Battle {
                                     printOptions();
                                 }
                                 break;
+                            case 'v':
+                                if (canSpecial) {
+                                    player.doSpecial(); //////////////////////////////////////////////////////////////////////////////////////  HERE
+                                }
                             case ' ':
                                 select();
                                 break;
