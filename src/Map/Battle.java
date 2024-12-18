@@ -3,8 +3,7 @@ import javax.swing.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.lang.Math;
-
-import Entities.Dice;
+import Entities.*;
 
 public class Battle {
 

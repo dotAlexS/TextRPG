@@ -19,11 +19,12 @@ public class Driver {
     public static void startGame(MainMenu start) {
         Adventurer player = new Defender("Mother");
         Map room = new StartRoom(20, 20, player);
+        Enemy e = new Skeleton();
         room.setBrackets(start.getvisibleBrackets());
         room.displayMap();
 
         if (start.getinputDetection() == true) {
-            Battle fight = new Battle(player, enemy); //////////////////////// BATTLE TEST
+            Battle fight = new Battle(player, e); //////////////////////// BATTLE TEST
             fight.encounter();
             //keyDetection(room, player, start, false);
         } else {
