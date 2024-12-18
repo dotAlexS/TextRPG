@@ -24,8 +24,7 @@ public class Driver {
         room.displayMap();
 
         if (start.getinputDetection() == true) {
-            Battle fight = new Battle(player, e); //////////////////////// BATTLE TEST
-            fight.encounter();
+            fight(player, e, room, start); // Start the battle
             //keyDetection(room, player, start, false);
         } else {
             while (true) {
@@ -70,53 +69,66 @@ public class Driver {
         }
     }
 
+    public static boolean fight(Entity player, Entity enemy, Map room, MainMenu start) {
+        Battle fight = new Battle(player, enemy);
+        player.setFight(true);
+        fight.encounter(); // The method will block until the battle ends
+        keyDetection(room, player, start, false);
+        return Battle.wonFight; // Return the result of the battle
+    }
+
     public static void keyDetection(Map room, Entity player, MainMenu start, boolean inMenu) {
         JFrame frame = new JFrame("");
         frame.setSize(1, 1);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        //System.out.println(player.isInFight());
         // Add KeyListener for input
         frame.addKeyListener(new KeyListener() {
             @Override
             public void keyPressed(KeyEvent e) {
                 try {
                     if (inMenu == false) {
-                        switch (e.getKeyChar()) {
-                            case 'w':
-                                if (player.canMoveCheck(1, 1, room)) {
-                                    room.moveEntity(1, 1, player.getX(), player.getY());
-                                    player.moveY(-1);
+                        if (player.isInFight() == false) {
+                            switch (e.getKeyChar()) {
+                                case 'w':
+                                    if (player.canMoveCheck(1, 1, room)) {
+                                        room.moveEntity(1, 1, player.getX(), player.getY());
+                                        player.moveY(-1);
+                                        break;
+                                    } else
+                                        break;
+                                case 'a':
+                                    if (player.canMoveCheck(4, 1, room)) {
+                                        room.moveEntity(4, 1, player.getX(), player.getY());
+                                        player.moveX(-1);
+                                        break;
+                                    } else
+                                        break;
+                                case 's':
+                                    if (player.canMoveCheck(3, 1, room)) {
+                                        room.moveEntity(3, 1, player.getX(), player.getY());
+                                        player.moveY(1);
+                                        break;
+                                    } else
+                                        break;
+                                case 'd':
+                                    if (player.canMoveCheck(2, 1, room)) {
+                                        room.moveEntity(2, 1, player.getX(), player.getY());
+                                        player.moveX(1);
+                                        break;
+                                    } else
+                                        break;
+                                case 'p':
+                                    start.setOption(1);
+                                    start.displayMenu();
+                                    keyDetection(null, null, start, true);
+                                    frame.removeKeyListener(this);
+                                    frame.dispose();
                                     break;
-                                } else
-                                    break;
-                            case 'a':
-                                if (player.canMoveCheck(4, 1, room)) {
-                                    room.moveEntity(4, 1, player.getX(), player.getY());
-                                    player.moveX(-1);
-                                    break;
-                                } else
-                                    break;
-                            case 's':
-                                if (player.canMoveCheck(3, 1, room)) {
-                                    room.moveEntity(3, 1, player.getX(), player.getY());
-                                    player.moveY(1);
-                                    break;
-                                } else
-                                    break;
-                            case 'd':
-                                if (player.canMoveCheck(2, 1, room)) {
-                                    room.moveEntity(2, 1, player.getX(), player.getY());
-                                    player.moveX(1);
-                                    break;
-                                } else
-                                    break;
-                            case 'p':
-                                start.setOption(1);
-                                start.displayMenu();
-                                keyDetection(null, null, start, true);
-                                frame.removeKeyListener(this);
-                                frame.dispose();
-                                break;
+                            }
+                        } else {
+                            frame.removeKeyListener(this);
+                            frame.dispose();
                         }
                     } else {
                         switch (e.getKeyChar()) {

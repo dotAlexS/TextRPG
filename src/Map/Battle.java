@@ -18,6 +18,8 @@ public class Battle {
 
     static boolean isInOptions = false;
 
+    public static boolean wonFight = false;
+
     static Entity player;
     static Entity enemy;
 
@@ -40,6 +42,7 @@ public class Battle {
         clear();
         System.out.println("You Have Encountered an Enemy. Press [space] to Begin the Battle.");
         keyDetection();
+        
         
     }
 
@@ -101,49 +104,49 @@ public class Battle {
         System.out.println("Press [space] to continue.");
     }
 
-    public static void endFight() {
-
-    }
-
     public static void printOptions() {
         if (enemy.getHP() <= 0) {
-            
+            wonFight = true;
         }
         if (player.getHP() <= 0) {     ////////////////////////////////////////////////////// IMPLEMENT WITH RUN AWAY. ADD LOOT HERE THO MB
-
+            clear();
+            System.out.println("You have lost.");
+            System.exit(0);
         }
-        clear();
-        System.out.println(player.getHP());
-        isInOptions = true;
-        System.out.println();
-        System.out.println("Player Health:                                           Enemy Health:");
-        System.out.println("      " + player.getHP() + "                                                   " + enemy.getHP());
-        System.out.println();
-        System.out.println("                      What Will you do:");
-        System.out.println();
-        if (option == 1) {
-            System.out.print("\u001B[33m" + "          Melee          " + "\u001B[37m");
-            System.out.println("\u001B[34m" + "                   Inventory          " + "\u001B[37m");
-            System.out.print("\u001B[34m" + "          Guard             " + "\u001B[37m");
-            System.out.println("\u001B[34m" + "                Run          " + "\u001B[37m");
-        }
-        else if (option == 2) {
-            System.out.print("\u001B[34m" + "          Melee          " + "\u001B[37m");
-            System.out.println("\u001B[33m" + "                   Inventory          " + "\u001B[37m");
-            System.out.print("\u001B[34m" + "          Guard             " + "\u001B[37m");
-            System.out.println("\u001B[34m" + "                Run          " + "\u001B[37m");
-        }
-        else if (option == 3) {
-            System.out.print("\u001B[34m" + "          Melee          " + "\u001B[37m");
-            System.out.println("\u001B[34m" + "                   Inventory          " + "\u001B[37m");
-            System.out.print("\u001B[33m" + "          Guard             " + "\u001B[37m");
-            System.out.println("\u001B[34m" + "                Run          " + "\u001B[37m");
-        }
-        else if (option == 4) {
-            System.out.print("\u001B[34m" + "          Melee          " + "\u001B[37m");
-            System.out.println("\u001B[34m" + "                   Inventory          " + "\u001B[37m");
-            System.out.print("\u001B[34m" + "          Guard             " + "\u001B[37m");
-            System.out.println("\u001B[33m" + "                Run          " + "\u001B[37m");
+        if (wonFight == false) {
+            clear();
+            System.out.println(player.getHP());
+            isInOptions = true;
+            System.out.println();
+            System.out.println("Player Health:                                           Enemy Health:");
+            System.out.println("      " + player.getHP() + "                                                   " + enemy.getHP());
+            System.out.println();
+            System.out.println("                      What Will you do:");
+            System.out.println();
+            if (option == 1) {
+                System.out.print("\u001B[33m" + "          Melee          " + "\u001B[37m");
+                System.out.println("\u001B[34m" + "                   Inventory          " + "\u001B[37m");
+                System.out.print("\u001B[34m" + "          Guard             " + "\u001B[37m");
+                System.out.println("\u001B[34m" + "                Run          " + "\u001B[37m");
+            }
+            else if (option == 2) {
+                System.out.print("\u001B[34m" + "          Melee          " + "\u001B[37m");
+                System.out.println("\u001B[33m" + "                   Inventory          " + "\u001B[37m");
+                System.out.print("\u001B[34m" + "          Guard             " + "\u001B[37m");
+                System.out.println("\u001B[34m" + "                Run          " + "\u001B[37m");
+            }
+            else if (option == 3) {
+                System.out.print("\u001B[34m" + "          Melee          " + "\u001B[37m");
+                System.out.println("\u001B[34m" + "                   Inventory          " + "\u001B[37m");
+                System.out.print("\u001B[33m" + "          Guard             " + "\u001B[37m");
+                System.out.println("\u001B[34m" + "                Run          " + "\u001B[37m");
+            }
+            else if (option == 4) {
+                System.out.print("\u001B[34m" + "          Melee          " + "\u001B[37m");
+                System.out.println("\u001B[34m" + "                   Inventory          " + "\u001B[37m");
+                System.out.print("\u001B[34m" + "          Guard             " + "\u001B[37m");
+                System.out.println("\u001B[33m" + "                Run          " + "\u001B[37m");
+            }
         }
 
     }
@@ -180,6 +183,18 @@ public class Battle {
             @Override
             public void keyPressed(KeyEvent e) {
                 try {
+                    if (wonFight) {
+                        player.setFight(false);
+                        player.setMoney(player.getMoney() + 10);
+                        System.out.println("You Have Won the Fight!");
+                        System.out.println("Obtained 10 Gold");
+                        switch (e.getKeyChar()) {
+                            case ' ':
+                                frame.removeKeyListener(this);
+                                frame.dispose();
+                                break;
+                        }
+                    }
                     if (inBattle == false) {
                         switch (e.getKeyChar()) {
                             case ' ':
@@ -233,6 +248,7 @@ public class Battle {
         });
 
         frame.setVisible(true);
+        
     }
 
     public static void clear() {

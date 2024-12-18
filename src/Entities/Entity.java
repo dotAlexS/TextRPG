@@ -9,6 +9,8 @@ public abstract class Entity {
     
     public int xcor = 0;
     public int ycor = 0;
+
+    private boolean inFight = false;
     
     public Entity(String name, int maxHP, int money, int atkStandard, int defense, int speed) {
         this.name = name;
@@ -42,6 +44,14 @@ public abstract class Entity {
         return (ycor);
     }
     
+    public boolean isInFight() {
+        return(inFight);
+    }
+
+    public void setFight(boolean set) {
+        inFight = set;
+    }
+
     public String getName() {
         return name;
     }
