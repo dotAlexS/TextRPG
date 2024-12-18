@@ -11,8 +11,7 @@ public class Defender extends Adventurer {
         specialMax = 15;
         specialName = "Super Immunity";
     }
-    public int attack(){
-        return 0;
+    public void attack(Entity other){
     }
 
     public int getSpecial() {

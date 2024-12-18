@@ -18,7 +18,7 @@ public abstract class Entity {
         this.defense = defense;
         this.speed = speed;
     }
-    public abstract int attack();
+    public abstract void attack(Entity other);
     
     public void setpos(int xcor, int ycor) {
         this.xcor = xcor;
